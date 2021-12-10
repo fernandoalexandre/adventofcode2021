@@ -40,6 +40,7 @@ def main():
 
         parsing = []
 
+        # Part 1
         for char in list(line): 
             print(parsing)
             if char in match_table.keys():
@@ -56,6 +57,7 @@ def main():
                         part1_invalid[char] += 1
                     break
 
+        # Part 2
         parsing = []
         for char in list(line): 
             if char in match_table.keys():
@@ -79,9 +81,11 @@ def main():
         
             part_2_line_scores.append(current_score)
 
+    # Part1 Scores
     for invalid_key in part1_invalid.keys():
         part1 += part1_invalid[invalid_key] * part_1_scores[invalid_key]
-    
+
+    # Part2 Scores
     p2_scores = sorted(part_2_line_scores)
     part2 = p2_scores[math.floor(len(part_2_line_scores)/2)]
 
