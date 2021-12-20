@@ -35,40 +35,47 @@ def get_adj_values(map: list, row: int, col: int, padding: str) -> tuple:
         else:
             values += padding
 
-    return str(values), is_padding
+    return str(values)
 
 
-def part1(lmap: list, algo: str, expected_result: int = None, should_print: bool = True) -> None:
-    print("--- Part 1 Ship-it ---")
-
+def part1(lmap: list, algo: str, num_it: int, expected_result: int = None, should_print: bool = True) -> None:
     new_map = []
 
-    for it in range(0, 2):
-        if algo[0] == 1:
-            padding = '1' if it % 2 == 0 else '0'
+    for it in range(0, num_it):
+        part1 = 0
+
+        if algo[0] == '1':
+            padding = '0' if it % 2 == 0 else '1'
         else:
             padding = '0'
-        part1 = 0
+        
+        # Add padding
         for k in range(0, len(lmap)):
             lmap[k].insert(0, padding)
             lmap[k].append(padding)
         lmap.insert(0, [padding for _ in range(0, len(lmap[0]))])
         lmap.append([padding for _ in range(0, len(lmap[0]))])
+        
+        print_map(lmap, it, should_print)
+        # Process
         for i in range(0, len(lmap)):
             new_map.append([])
             for j in range(0, len(lmap[0])):
-                bin_val, is_padding = get_adj_values(lmap, i, j, padding)
+                bin_val = get_adj_values(lmap, i, j, padding)
                 idx = int(bin_val, 2)
                 val = algo[idx]
 
-                part1 += 1 if val == '1' and not is_padding else 0
-
                 new_map[i].append(val)
-
-        print_map(lmap, it, should_print)
 
         lmap = new_map
         new_map = []
+
+        print_map(lmap, it, should_print)
+
+    for i in range(0, len(lmap)):
+        for j in range(0, len(lmap[0])):
+            if lmap[i][j] == '1':
+                part1 += 1
 
     print(f"Part 1: {part1}")
     if expected_result is not None:
@@ -76,14 +83,6 @@ def part1(lmap: list, algo: str, expected_result: int = None, should_print: bool
             print("Test passed!")
         else:
             print(f"Test failed! {expected_result} != {part1} (calculated)")
-
-
-def part2(content: list) -> None:
-    print("--- Part 2 Ship-it ---")
-
-    part2 = 0
-
-    print(f"Part 2: {part2}")
 
 
 def parse(content):
@@ -103,14 +102,18 @@ def main():
 
     print("-------------- Part 1 ------------------")
     algo, lmap = parse(ex_content)
-    part1(lmap, algo, 35, should_print=True)
+    part1(lmap, algo, 2, 35, should_print=False)
 
     algo, lmap = parse(content)
-    part1(lmap, algo, should_print=True)
+    part1(lmap, algo, 2, should_print=False)
 
     print("-------------- Part 2 ------------------")
 
-    part2(content)
+    algo, lmap = parse(ex_content)
+    part1(lmap, algo, 50, 3351, should_print=False)
+
+    algo, lmap = parse(content)
+    part1(lmap, algo, 50, should_print=False)
 
 if __name__ == "__main__":
     main()
