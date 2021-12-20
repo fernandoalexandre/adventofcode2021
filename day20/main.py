@@ -106,7 +106,7 @@ def main():
     part1(lmap, algo, 35, should_print=True)
 
     algo, lmap = parse(content)
-    part1(lmap, algo, should_print=False)
+    part1(lmap, algo, should_print=True)
 
     print("-------------- Part 2 ------------------")
 
