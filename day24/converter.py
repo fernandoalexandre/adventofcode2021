@@ -8,48 +8,33 @@ def read_file(path: str) -> list:
 
 
 def _inp(input: list, registers: dict, params: list) -> tuple:
-    print(f"registers['{params[0]}'] = input[0]")
+    print(f"registers['{params[0]}'] := input[0]")
     print("input = input[1:]")
     return registers, input[1:]
 
 
 def _add(input: list, registers: dict, params: list) -> tuple:
-    if isinstance(params[1], int):
-        print(f"registers['{params[0]}'] += {params[1]}")
-    else:
-        print(f"registers['{params[0]}'] += registers['{params[1]}']")
+    print(f"{params[0]} := {params[0]} + {params[1]}")
     return registers, input
 
 
 def _mul(input: list, registers: dict, params: list) -> tuple:
-    if isinstance(params[1], int):
-        print(f"registers['{params[0]}'] *= {params[1]}")
-    else:
-        print(f"registers['{params[0]}'] *= registers['{params[1]}']")
+    print(f"{params[0]} := {params[0]} * {params[1]}")
     return registers, input
 
 
 def _div(input: list, registers: dict, params: list) -> tuple:
-    if isinstance(params[1], int):
-        print(f"registers['{params[0]}'] = floor(registers['{params[0]}'] / {params[1]})")
-    else:
-        print(f"registers['{params[0]}'] = floor(registers['{params[0]}'] / registers['{params[1]}'])")
+    print(f"{params[0]} := {params[0]} / {params[1]}")
     return registers, input
 
 
 def _mod(input: list, registers: dict, params: list) -> tuple:
-    if isinstance(params[1], int):
-        print(f"registers['{params[0]}'] = registers['{params[0]}'] % {params[1]}")
-    else:
-        print(f"registers['{params[0]}'] = registers['{params[0]}'] % registers['{params[1]}']")
+    print(f"{params[0]} := {params[0]} % {params[1]}")
     return registers, input
 
 
 def _eql(input: list, registers: dict, params: list) -> tuple:
-    if isinstance(params[1], int):
-        print(f"registers['{params[0]}'] = int(registers['{params[0]}'] == {params[1]})")
-    else:
-        print(f"registers['{params[0]}'] = int(registers['{params[0]}'] == registers['{params[1]}'])")
+    print(f"{params[0]} := btou({params[0]} == {params[1]})")
     return registers, input
 
 
@@ -109,7 +94,7 @@ def main():
     # ex_1_inst, ex_1_inp = parse(read_file("day24/input_example"))
     # ex_2_inst, ex_2_inp = parse(read_file("day24/input_example_2"))
     # ex_3_inst, ex_3_inp = parse(read_file("day24/input_example_3"))
-    inp_inst = parse(read_file("day24/input"))
+    inp_inst = parse(read_file("input"))
 
     # part1(ex_1_inst, ex_1_inp, should_print=True)
     # part1(ex_2_inst, ex_2_inp, should_print=True)
