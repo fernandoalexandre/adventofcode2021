@@ -1,40 +1,36 @@
-from math import floor
-from multiprocessing import Pool
-
-
 def read_file(path: str) -> list:
     with open(path) as fp:
         return fp.readlines()
 
 
 def _inp(input: list, registers: dict, params: list) -> tuple:
-    print(f"registers['{params[0]}'] := input[0]")
+    print(f"registers['{params[0]}'] = input[0]")
     print("input = input[1:]")
     return registers, input[1:]
 
 
 def _add(input: list, registers: dict, params: list) -> tuple:
-    print(f"{params[0]} := {params[0]} + {params[1]}")
+    print(f"{params[0]} = {params[0]} + {params[1]}")
     return registers, input
 
 
 def _mul(input: list, registers: dict, params: list) -> tuple:
-    print(f"{params[0]} := {params[0]} * {params[1]}")
+    print(f"{params[0]} = {params[0]} * {params[1]}")
     return registers, input
 
 
 def _div(input: list, registers: dict, params: list) -> tuple:
-    print(f"{params[0]} := {params[0]} / {params[1]}")
+    print(f"{params[0]} = {params[0]} / {params[1]}")
     return registers, input
 
 
 def _mod(input: list, registers: dict, params: list) -> tuple:
-    print(f"{params[0]} := {params[0]} % {params[1]}")
+    print(f"{params[0]} = {params[0]} % {params[1]}")
     return registers, input
 
 
 def _eql(input: list, registers: dict, params: list) -> tuple:
-    print(f"{params[0]} := btou({params[0]} == {params[1]})")
+    print(f"{params[0]} = int({params[0]} == {params[1]})")
     return registers, input
 
 
