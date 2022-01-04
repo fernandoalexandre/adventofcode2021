@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from numpy import matmul, array
-
 from trajectory import Trajectory
 
 
@@ -150,7 +148,7 @@ class Beacon():
 
         for s_t in self.trajectories:
             for o_t in other_beacon.trajectories:
-                if s_t.eq_dist(o_t):
+                if s_t == o_t:
                     total_eq += 1
                     swap = self._find_swap(s_t, o_t)
                     # print(f"Before: {s_t} {s_t.get_direction_vectors()} ~ {o_t} {o_t.get_direction_vectors()}")

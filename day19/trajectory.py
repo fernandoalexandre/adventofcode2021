@@ -40,12 +40,6 @@ class Trajectory():
 
         return self.get_distance() == __o.get_distance()
 
-    def eq_dist(self, __o: Trajectory) -> bool:
-        if not isinstance(__o, Trajectory):
-            return NotImplemented()
-
-        return self.get_distance() == __o.get_distance()
-
     def swap_coordinates(self, swap_idx: tuple) -> None:
         new_src = [self.src[swap_idx[0]], self.src[swap_idx[1]], self.src[swap_idx[2]]]
         new_dst = [self.dst[swap_idx[0]], self.dst[swap_idx[1]], self.dst[swap_idx[2]]]

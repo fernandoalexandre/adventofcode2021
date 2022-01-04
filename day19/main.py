@@ -96,7 +96,7 @@ def main():
     max_distance = 0.0
     for i in range(0, len(source.detected_scanners)):
         for j in range(i, len(source.detected_scanners)):
-            dist = sum(abs(e1-e2) for e1, e2 in zip(source.detected_scanners[i],source.detected_scanners[j]))
+            dist = sum(abs(e1-e2) for e1, e2 in zip(source.detected_scanners[i], source.detected_scanners[j]))
 
             max_distance = dist if dist > max_distance else max_distance
 
